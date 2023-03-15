@@ -11,6 +11,8 @@ import ru.netology.domain.ProductRepository;
 public class ProductManagerTest {
     ProductRepository repo = new ProductRepository();
     ProductManager manager = new ProductManager(repo);
+
+
     Product book1 = new Book(1, "Над пропостью во ржи", 500, "Джером Селенжер");
     Product book2 = new Book(20, "Отцы и дети", 485, "Иван Тургеенев");
     Product book3 = new Book(31, "Преступление и наказание", 689, "Федор Достоевский");
@@ -36,7 +38,6 @@ public class ProductManagerTest {
 
     @Test
     public void shouldSearch() {
-        
 
 
         Product[] expected = {book2};

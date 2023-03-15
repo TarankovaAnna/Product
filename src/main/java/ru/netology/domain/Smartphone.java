@@ -1,16 +1,21 @@
 package ru.netology.domain;
 
 public class Smartphone extends Product {
-    protected String maker;
+
+
+    private String maker;
 
     protected String getMaker() {
         return maker;
     }
 
+    public void setMaker(String maker) {
+        this.maker = maker;
+    }
+
     protected Smartphone(int id, String name, int price, String maker) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+        super(id, name, price);
+
         this.maker = maker;
     }
 }

@@ -7,18 +7,17 @@ public class ProductRepository {
         Product[] tmp = new Product[products.length + 1];
         for (int i = 0; i < products.length; i++) {
             tmp[i] = products[i];
-            }
+        }
         tmp[tmp.length - 1] = product;
         products = tmp;
 
     }
 
 
-
     public void removeById(int id) {
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
-        for(Product product : products) {
+        for (Product product : products) {
             if (product.getId() != id) {
                 tmp[copyToIndex] = product;
                 copyToIndex++;

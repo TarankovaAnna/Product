@@ -23,7 +23,10 @@ public class ProductManagerTest {
     Product smartphone4 = new Smartphone(4, "Xiaomi Redmi 9C", 7_900, "XIAOMI");
     Product smartphone5 = new Smartphone(5, "Honor X8", 19_800, "Honor");
 
-    @BeforeEach
+
+
+
+    /*  @BeforeEach
     public void setup() {
         manager.add(book1);
         manager.add(book2);
@@ -34,16 +37,177 @@ public class ProductManagerTest {
         manager.add(smartphone3);
         manager.add(smartphone4);
         manager.add(smartphone5);
-    }
+    }*/
+
 
     @Test
-    public void shouldSearch() {
+    public void shouldSearchOneBook() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
 
-
-        Product[] expected = {book2};
-        Product[] actual = manager.searchBy("Отцы и дети");
+        Product[] expected = {book1};
+        Product[] actual = manager.searchBy("Над пропостью во ржи");
 
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldEmptyRequest() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+        
+        Product[] expected = {book1, book2, book3, book4, smartphone1, smartphone2, smartphone3, smartphone4, smartphone5};
+        Product[] actual = manager.searchBy("");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchNumber() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {smartphone1, smartphone2};
+        Product[] actual = manager.searchBy("2");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchOneCyrillicLetter() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {book1, book2, book3, book4};
+        Product[] actual = manager.searchBy("и");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchOneLatinLetter() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {smartphone3, smartphone4};
+        Product[] actual = manager.searchBy("i");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchWhitespace() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {book1, book2, book3, book4, smartphone1, smartphone2, smartphone3, smartphone4, smartphone5};
+        Product[] actual = manager.searchBy(" ");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchOneCyrillicWorld() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {book4};
+        Product[] actual = manager.searchBy("мир");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchOneLatinWorld() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {smartphone5};
+        Product[] actual = manager.searchBy("Honor");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchMissingWorld() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(book3);
+        manager.add(book4);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+        manager.add(smartphone3);
+        manager.add(smartphone4);
+        manager.add(smartphone5);
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Земля");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
